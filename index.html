@@ -109,39 +109,6 @@
             width: 100%;
         }
         
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        
-        .cart-icon {
-            position: relative;
-            cursor: pointer;
-            font-size: 1.5rem;
-            transition: transform 0.3s;
-        }
-        
-        .cart-icon:hover {
-            transform: scale(1.1);
-        }
-        
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--secondary);
-            color: var(--darker);
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -351,7 +318,7 @@
             margin-right: 1rem;
         }
         
-        /* Pricing & Cart Section */
+        /* Pricing & Checkout Section */
         .pricing-card {
             background: rgba(30, 41, 59, 0.7);
             border-radius: 20px;
@@ -431,7 +398,7 @@
             font-size: 1.2rem;
         }
         
-        .add-to-cart-btn {
+        .buy-now-btn {
             background: var(--gradient);
             color: white;
             border: none;
@@ -450,69 +417,13 @@
             margin-bottom: 2rem;
         }
         
-        .add-to-cart-btn:hover {
+        .buy-now-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 25px rgba(37, 99, 235, 0.4);
         }
         
-        .add-to-cart-btn:active {
+        .buy-now-btn:active {
             transform: translateY(0);
-        }
-        
-        .cart-summary {
-            background: rgba(15, 23, 42, 0.5);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .cart-summary-title {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-        
-        .cart-item-details h4 {
-            margin-bottom: 0.3rem;
-            font-size: 1rem;
-        }
-        
-        .cart-item-type {
-            font-size: 0.8rem;
-            color: var(--gray-dark);
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            display: inline-block;
-        }
-        
-        .cart-item-price {
-            font-weight: 600;
-            color: var(--primary-light);
-        }
-        
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            margin: 1rem 0;
-            padding-top: 1rem;
-            border-top: 2px solid rgba(255, 255, 255, 0.1);
-            font-weight: 600;
-            font-size: 1.1rem;
         }
         
         .terms-checkbox {
@@ -540,32 +451,6 @@
             text-decoration: underline;
         }
         
-        .checkout-btn {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
-        }
-        
-        .checkout-btn:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(37, 99, 235, 0.4);
-        }
-        
-        .checkout-btn:disabled {
-            background: var(--gray-dark);
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-        
         .what-you-get {
             margin-top: 2rem;
         }
@@ -591,6 +476,163 @@
             height: 8px;
             border-radius: 50%;
             margin-right: 1rem;
+        }
+        
+        /* Checkout Page */
+        .checkout-page {
+            display: none;
+            padding: 8rem 2rem;
+            background: var(--darker);
+            min-height: 100vh;
+        }
+        
+        .checkout-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .checkout-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .checkout-subtitle {
+            color: var(--gray-dark);
+        }
+        
+        .checkout-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .order-summary {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        
+        .order-summary-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        .order-item-details h4 {
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
+        }
+        
+        .order-item-type {
+            font-size: 0.8rem;
+            color: var(--gray-dark);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .order-item-price {
+            font-weight: 600;
+            color: var(--primary-light);
+        }
+        
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            padding-top: 1rem;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .checkout-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-input {
+            padding: 0.8rem 1rem;
+            background: rgba(15, 23, 42, 0.7);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+        
+        .complete-purchase-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+        }
+        
+        .complete-purchase-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(37, 99, 235, 0.4);
+        }
+        
+        .back-to-consultation {
+            display: block;
+            text-align: center;
+            color: var(--primary-light);
+            margin-top: 1.5rem;
+            text-decoration: none;
+        }
+        
+        .back-to-consultation:hover {
+            text-decoration: underline;
         }
         
         /* Testimonials */
@@ -827,6 +869,10 @@
             .pricing-card {
                 position: static;
             }
+            
+            .checkout-content {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 768px) {
@@ -842,7 +888,7 @@
                 grid-template-columns: 1fr;
             }
             
-            .pricing-card, .consultation-info {
+            .pricing-card, .consultation-info, .checkout-container {
                 padding: 2rem;
             }
         }
@@ -860,14 +906,10 @@
                 <a href="#process">Process</a>
                 <a href="#testimonials">Testimonials</a>
             </div>
-            <div class="nav-actions">
-                <div class="cart-icon" id="cartIcon">
-                    🛒 <span class="cart-count" id="cartCount">0</span>
-                </div>
-            </div>
         </nav>
     </header>
 
+    <!-- Consultation Page -->
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
@@ -940,22 +982,6 @@
                     </div>
                 </div>
                 
-                <button class="add-to-cart-btn" id="addToCartBtn">
-                    <span>Add to Cart</span>
-                    <span>🛒</span>
-                </button>
-                
-                <div class="cart-summary">
-                    <h4 class="cart-summary-title">🛒 Your Consultation</h4>
-                    <div id="cartItems">
-                        <p style="text-align: center; color: var(--gray-dark); padding: 1rem 0;">No consultation added yet</p>
-                    </div>
-                    <div class="cart-total">
-                        <span>Total Investment:</span>
-                        <span id="cartTotal">$0.00</span>
-                    </div>
-                </div>
-                
                 <div class="terms-checkbox">
                     <input type="checkbox" id="termsCheckbox">
                     <label for="termsCheckbox" class="terms-text">
@@ -963,7 +989,10 @@
                     </label>
                 </div>
                 
-                <button class="checkout-btn" id="checkoutBtn" disabled>Proceed to Checkout</button>
+                <button class="buy-now-btn" id="buyNowBtn">
+                    <span>Buy Now</span>
+                    <span>🚀</span>
+                </button>
                 
                 <div class="what-you-get">
                     <h3>What You'll Receive:</h3>
@@ -987,6 +1016,57 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Page -->
+    <section class="checkout-page" id="checkoutPage">
+        <div class="checkout-container">
+            <div class="checkout-header">
+                <h2 class="checkout-title">Complete Your Purchase</h2>
+                <p class="checkout-subtitle">Enter your details to finalize your consultation booking</p>
+            </div>
+            
+            <div class="checkout-content">
+                <div class="order-summary">
+                    <h4 class="order-summary-title">📋 Order Summary</h4>
+                    <div id="checkoutOrderItems">
+                        <!-- Order items will be dynamically inserted here -->
+                    </div>
+                    <div class="order-total">
+                        <span>Total Investment:</span>
+                        <span id="checkoutOrderTotal">$0.00</span>
+                    </div>
+                </div>
+                
+                <form class="checkout-form" id="checkoutForm">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-input" id="customerName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" id="customerEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Company Name</label>
+                        <input type="text" class="form-input" id="companyName">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-input" id="customerPhone" required>
+                    </div>
+                    
+                    <button type="submit" class="complete-purchase-btn" id="completePurchaseBtn">
+                        Complete Purchase
+                    </button>
+                    
+                    <a href="#consultation" class="back-to-consultation" id="backToConsultation">← Back to Consultation</a>
+                </form>
             </div>
         </div>
     </section>
@@ -1221,108 +1301,35 @@
                 });
             });
             
-            // Cart functionality
-            const cartIcon = document.getElementById('cartIcon');
-            const cartCount = document.getElementById('cartCount');
+            // Checkout functionality
             const priceInput = document.getElementById('priceInput');
-            const addToCartBtn = document.getElementById('addToCartBtn');
-            const cartItems = document.getElementById('cartItems');
-            const cartTotal = document.getElementById('cartTotal');
             const termsCheckbox = document.getElementById('termsCheckbox');
-            const checkoutBtn = document.getElementById('checkoutBtn');
+            const buyNowBtn = document.getElementById('buyNowBtn');
+            const checkoutPage = document.getElementById('checkoutPage');
+            const checkoutOrderItems = document.getElementById('checkoutOrderItems');
+            const checkoutOrderTotal = document.getElementById('checkoutOrderTotal');
+            const checkoutForm = document.getElementById('checkoutForm');
+            const completePurchaseBtn = document.getElementById('completePurchaseBtn');
+            const backToConsultation = document.getElementById('backToConsultation');
             const notification = document.getElementById('notification');
             
-            let cart = [];
+            let currentOrder = null;
             
             // Event Listeners
-            cartIcon.addEventListener('click', function() {
-                if (cart.length === 0) {
-                    showNotification('Your cart is empty', 'error');
-                } else {
-                    showNotification('Your consultation is already in the cart', 'success');
-                }
+            buyNowBtn.addEventListener('click', proceedToCheckout);
+            backToConsultation.addEventListener('click', function(e) {
+                e.preventDefault();
+                checkoutPage.style.display = 'none';
+                document.querySelector('.consultation-section').scrollIntoView({ behavior: 'smooth' });
             });
-            
-            addToCartBtn.addEventListener('click', addToCart);
-            termsCheckbox.addEventListener('change', toggleCheckoutButton);
-            checkoutBtn.addEventListener('click', proceedToCheckout);
-            
-            // Cart animation
-            const cartTl = gsap.timeline({paused: true});
-            cartTl.to('.cart-count', {
-                scale: 1.5,
-                duration: 0.2,
-                ease: "power2.out"
-            }).to('.cart-count', {
-                scale: 1,
-                duration: 0.2,
-                ease: "power2.in"
-            });
+            checkoutForm.addEventListener('submit', completePurchase);
             
             // Functions
-            function addToCart() {
+            function proceedToCheckout() {
                 const price = parseFloat(priceInput.value);
                 
                 if (isNaN(price) || price <= 0) {
                     showNotification('Please enter a valid investment amount', 'error');
-                    return;
-                }
-                
-                // Replace item in cart (only one consultation allowed)
-                cart = [{
-                    id: Date.now(),
-                    name: 'Business Process Consultation',
-                    price: price,
-                    type: 'Consultation'
-                }];
-                
-                // Update cart count with animation
-                cartCount.textContent = cart.length;
-                cartTl.restart();
-                
-                // Update cart display
-                updateCartDisplay();
-                
-                // Show confirmation
-                showNotification('Consultation added to cart!', 'success');
-            }
-            
-            function updateCartDisplay() {
-                // Clear current items
-                cartItems.innerHTML = '';
-                
-                if (cart.length === 0) {
-                    cartItems.innerHTML = '<p style="text-align: center; color: var(--gray-dark); padding: 1rem 0;">No consultation added yet</p>';
-                    cartTotal.textContent = '$0.00';
-                    return;
-                }
-                
-                // Add each item to display
-                cart.forEach(item => {
-                    const itemElement = document.createElement('div');
-                    itemElement.className = 'cart-item';
-                    itemElement.innerHTML = `
-                        <div class="cart-item-details">
-                            <h4>${item.name}</h4>
-                            <span class="cart-item-type">${item.type}</span>
-                        </div>
-                        <div class="cart-item-price">$${item.price.toFixed(2)}</div>
-                    `;
-                    cartItems.appendChild(itemElement);
-                });
-                
-                // Update total
-                const total = cart.reduce((sum, item) => sum + item.price, 0);
-                cartTotal.textContent = `$${total.toFixed(2)}`;
-            }
-            
-            function toggleCheckoutButton() {
-                checkoutBtn.disabled = !termsCheckbox.checked || cart.length === 0;
-            }
-            
-            function proceedToCheckout() {
-                if (cart.length === 0) {
-                    showNotification('Your cart is empty', 'error');
                     return;
                 }
                 
@@ -1331,21 +1338,79 @@
                     return;
                 }
                 
+                // Create order
+                currentOrder = {
+                    id: Date.now(),
+                    name: 'Business Process Consultation',
+                    price: price,
+                    type: 'Consultation'
+                };
+                
+                // Update checkout page with order details
+                updateCheckoutDisplay();
+                
+                // Show checkout page
+                checkoutPage.style.display = 'block';
+                checkoutPage.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            function updateCheckoutDisplay() {
+                if (!currentOrder) return;
+                
+                // Clear current items
+                checkoutOrderItems.innerHTML = '';
+                
+                // Add order item
+                const itemElement = document.createElement('div');
+                itemElement.className = 'order-item';
+                itemElement.innerHTML = `
+                    <div class="order-item-details">
+                        <h4>${currentOrder.name}</h4>
+                        <span class="order-item-type">${currentOrder.type}</span>
+                    </div>
+                    <div class="order-item-price">$${currentOrder.price.toFixed(2)}</div>
+                `;
+                checkoutOrderItems.appendChild(itemElement);
+                
+                // Update total
+                checkoutOrderTotal.textContent = `$${currentOrder.price.toFixed(2)}`;
+            }
+            
+            function completePurchase(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('customerName').value;
+                const email = document.getElementById('customerEmail').value;
+                const company = document.getElementById('companyName').value;
+                const phone = document.getElementById('customerPhone').value;
+                
+                // Validate form
+                if (!name || !email || !phone) {
+                    showNotification('Please fill in all required fields', 'error');
+                    return;
+                }
+                
                 // Show loading state
-                checkoutBtn.innerHTML = 'Processing...';
-                checkoutBtn.disabled = true;
+                completePurchaseBtn.innerHTML = 'Processing...';
+                completePurchaseBtn.disabled = true;
                 
                 // Simulate API call to backend
                 setTimeout(() => {
                     showNotification('Consultation booked successfully! A confirmation email has been sent.', 'success');
-                    // Reset cart
-                    cart = [];
-                    cartCount.textContent = '0';
-                    termsCheckbox.checked = false;
-                    checkoutBtn.disabled = true;
-                    checkoutBtn.innerHTML = 'Proceed to Checkout';
-                    updateCartDisplay();
+                    
+                    // Reset form
+                    checkoutForm.reset();
                     priceInput.value = '';
+                    termsCheckbox.checked = false;
+                    
+                    // Reset button
+                    completePurchaseBtn.innerHTML = 'Complete Purchase';
+                    completePurchaseBtn.disabled = false;
+                    
+                    // Go back to consultation section
+                    checkoutPage.style.display = 'none';
+                    document.querySelector('.consultation-section').scrollIntoView({ behavior: 'smooth' });
                 }, 2000);
             }
             
