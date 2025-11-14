@@ -1,6 +1,6 @@
 // server.js
 const express = require('express');
-const stripe = require('stripe')('your_stripe_secret_key');
+const stripe = require('stripe')('sk_test_51ST4UF40HwZJ2DP83rA9XygygOdiVWx4MLzYvI7EElhrBzKX3sNh5CTc6iX6fBJuaSTE4VfVvVxOUOgoTq8L3uiI005sdONyGr');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors');
