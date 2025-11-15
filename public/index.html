@@ -1614,9 +1614,17 @@
             }
             
             // This function calls your backend to create a Checkout Session
+// This function calls your backend to create a Checkout Session
 async function createCheckoutSession(price) {
     try {
-        // Use relative path - Vercel will handle the routing
+        console.log('Starting checkout process with price:', price);
+        
+        // Show loading immediately
+        loadingOverlay.style.display = 'flex';
+        
+        const baseUrl = window.location.origin;
+        console.log('Base URL:', baseUrl);
+        
         const response = await fetch('/create-checkout-session', {
             method: 'POST',
             headers: {
@@ -1624,24 +1632,36 @@ async function createCheckoutSession(price) {
             },
             body: JSON.stringify({
                 price: price,
-                productName: 'Business Process Consultation'
+                productName: 'Business Process Consultation',
+                successUrl: `${baseUrl}/success.html`,
+                cancelUrl: `${baseUrl}/cancel.html`,
             }),
         });
 
+        console.log('Response status:', response.status);
+        
         if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || 'Failed to create checkout session');
+            const errorText = await response.text();
+            console.error('Server error response:', errorText);
+            throw new Error(`Server error: ${response.status} - ${errorText}`);
         }
 
         const data = await response.json();
+        console.log('Session data received:', data);
+        
+        if (!data.sessionId) {
+            throw new Error('No sessionId received from server');
+        }
+        
         return data.sessionId;
         
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error creating checkout session:', error);
+        // Hide loading on error
+        loadingOverlay.style.display = 'none';
         throw error;
     }
-}            
-            function showNotification(message, type) {
+}            function showNotification(message, type) {
                 notification.textContent = message;
                 notification.className = `notification ${type}`;
                 notification.classList.add('show');
