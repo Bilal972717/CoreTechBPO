@@ -1,9 +1,9 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 module.exports = async (req, res) => {
-  console.log('=== CHECKOUT SESSION REQUEST START ===');
+  console.log('=== CHECKOUT SESSION REQUEST ===');
   
-  // Enable CORS
+  // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -21,22 +21,20 @@ module.exports = async (req, res) => {
   try {
     const { price, productName } = req.body;
     
-    console.log('Received price:', price, 'product:', productName);
+    console.log('Creating session for price:', price);
     
-    // Validate
-    if (!price || isNaN(price) || price <= 0) {
+    // Validate input
+    if (!price || price <= 0) {
       return res.status(400).json({ error: 'Valid price is required' });
     }
 
-    // Check Stripe key
-    if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_SECRET_KEY.startsWith('sk_')) {
-      console.error('Invalid Stripe key:', process.env.STRIPE_SECRET_KEY);
-      return res.status(500).json({ error: 'Server configuration error - Invalid Stripe key' });
+    // Check if Stripe key is set
+    if (!process.env.STRIPE_SECRET_KEY) {
+      console.error('Stripe secret key is not set');
+      return res.status(500).json({ error: 'Server configuration error' });
     }
 
-    console.log('Creating Stripe session with amount:', price * 100);
-    
-    // Create Stripe session
+    // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
@@ -47,31 +45,36 @@ module.exports = async (req, res) => {
               name: productName || 'Business Consultation',
               description: 'Professional business consultation service',
             },
-            unit_amount: Math.round(price * 100), // cents
+            unit_amount: Math.round(price * 100), // Convert to cents
           },
           quantity: 1,
         },
       ],
       mode: 'payment',
-      success_url: `${req.headers.origin || 'https://your-app.vercel.app'}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.headers.origin || 'https://your-app.vercel.app'}/cancel.html`,
+      success_url: `${req.headers.origin}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${req.headers.origin}/cancel.html`,
     });
 
-    console.log('✅ Session created successfully:', session.id);
+    console.log('Session created successfully:', session.id);
     
+    // Return the session ID
     res.json({ 
       success: true,
-      sessionId: session.id,
-      url: session.url 
+      sessionId: session.id
     });
 
   } catch (error) {
-    console.error('❌ Stripe error:', error);
+    console.error('Stripe error:', error);
+    
+    // Return specific error messages
+    let errorMessage = error.message;
+    if (error.type === 'StripeInvalidRequestError') {
+      errorMessage = 'Invalid Stripe request. Check your API keys.';
+    }
+    
     res.status(500).json({ 
       success: false,
-      error: error.message,
-      type: error.type,
-      code: error.code
+      error: errorMessage
     });
   }
 };
