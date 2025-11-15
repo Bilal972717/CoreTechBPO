@@ -1616,19 +1616,15 @@
             // This function calls your backend to create a Checkout Session
 async function createCheckoutSession(price) {
     try {
-        // Get the base URL (works for both localhost and Vercel deployment)
-        const baseUrl = window.location.origin;
-        
-        const response = await fetch(`${baseUrl}/create-checkout-session`, {
+        // Use relative path - Vercel will handle the routing
+        const response = await fetch('/create-checkout-session', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 price: price,
-                productName: 'Business Process Consultation',
-                successUrl: `${baseUrl}/success.html`,
-                cancelUrl: `${baseUrl}/cancel.html`,
+                productName: 'Business Process Consultation'
             }),
         });
 
@@ -1637,15 +1633,14 @@ async function createCheckoutSession(price) {
             throw new Error(errorData.error || 'Failed to create checkout session');
         }
 
-        const { sessionId } = await response.json();
-        return sessionId;
+        const data = await response.json();
+        return data.sessionId;
         
     } catch (error) {
-        console.error('Error creating checkout session:', error);
+        console.error('Error:', error);
         throw error;
     }
-}
-            
+}            
             function showNotification(message, type) {
                 notification.textContent = message;
                 notification.className = `notification ${type}`;
