@@ -1659,3 +1659,56 @@
         }
     });
 </script>
+<!-- Add this button anywhere in your HTML -->
+<button onclick="testCheckout()" style="position: fixed; top: 10px; left: 10px; z-index: 10000; padding: 10px; background: #2563EB; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    🧪 Test Checkout
+</button>
+
+<script>
+async function testCheckout() {
+    console.log('=== STARTING CHECKOUT TEST ===');
+    
+    // Test 1: Check if Stripe is loaded
+    if (typeof stripe === 'undefined') {
+        console.error('❌ Stripe is not loaded');
+        alert('Stripe not loaded. Check your Stripe key.');
+        return;
+    }
+    console.log('✅ Stripe is loaded');
+    
+    // Test 2: Test backend connection
+    try {
+        const healthResponse = await fetch('/health');
+        const healthData = await healthResponse.json();
+        console.log('✅ Backend health:', healthData);
+    } catch (error) {
+        console.error('❌ Backend health check failed:', error);
+        alert('Backend connection failed: ' + error.message);
+        return;
+    }
+    
+    // Test 3: Test checkout session creation
+    try {
+        console.log('Testing checkout session creation...');
+        const response = await fetch('/create-checkout-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ price: 25, productName: 'Test' })
+        });
+        
+        const data = await response.json();
+        console.log('✅ Checkout session response:', data);
+        
+        if (data.sessionId) {
+            console.log('✅ Session created successfully');
+            alert('✅ All tests passed! Session ID: ' + data.sessionId);
+        } else {
+            console.error('❌ No session ID in response:', data);
+            alert('❌ Failed to create session: ' + (data.error || 'Unknown error'));
+        }
+    } catch (error) {
+        console.error('❌ Checkout test failed:', error);
+        alert('Checkout test failed: ' + error.message);
+    }
+}
+</script>
