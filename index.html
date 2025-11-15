@@ -1525,10 +1525,13 @@
         }
         
         // This function calls your backend to create a Checkout Session
+// This function calls your backend to create a Checkout Session
 async function createCheckoutSession(price) {
     try {
         // Get the base URL
         const baseUrl = window.location.origin;
+        
+        console.log('Creating checkout session with price:', price);
         
         const response = await fetch(`${baseUrl}/api/create-checkout-session`, {
             method: 'POST',
@@ -1543,17 +1546,19 @@ async function createCheckoutSession(price) {
             }),
         });
 
+        const responseData = await response.json();
+        
         if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || 'Failed to create checkout session');
+            console.error('Server error response:', responseData);
+            throw new Error(responseData.error || `HTTP error! status: ${response.status}`);
         }
 
-        const { sessionId } = await response.json();
-        return sessionId;
+        console.log('Checkout session created:', responseData.sessionId);
+        return responseData.sessionId;
         
     } catch (error) {
         console.error('Error creating checkout session:', error);
-        throw error;
+        throw new Error(`Payment setup failed: ${error.message}`);
     }
 }
         
