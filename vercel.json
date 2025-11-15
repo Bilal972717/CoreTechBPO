@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/**/*.js",
+      "src": "api/*.js",
       "use": "@vercel/node"
     },
     {
@@ -13,23 +13,17 @@
   "routes": [
     {
       "src": "/create-checkout-session",
-      "dest": "/api/create-checkout-session.js",
-      "methods": ["POST"]
-    },
-    {
-      "src": "/check-session/(.*)",
-      "dest": "/api/check-session.js"
+      "methods": ["POST"],
+      "dest": "/api/create-checkout-session.js"
     },
     {
       "src": "/health",
+      "methods": ["GET"],
       "dest": "/api/health.js"
     },
     {
       "src": "/(.*)",
       "dest": "/public/$1"
     }
-  ],
-  "env": {
-    "STRIPE_SECRET_KEY": "@stripe_secret_key"
-  }
+  ]
 }
