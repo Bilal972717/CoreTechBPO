@@ -1,37 +1,37 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 module.exports = async (req, res) => {
-  console.log('=== CHECKOUT SESSION REQUEST ===');
-  
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  // Handle preflight
+  // Handle preflight requests
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
 
-  // Only accept POST
+  // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    const { price, productName } = req.body;
-    
-    console.log('Creating session for price:', price);
-    
+    const { price, productName, successUrl, cancelUrl } = req.body;
+
     // Validate input
     if (!price || price <= 0) {
-      return res.status(400).json({ error: 'Valid price is required' });
+      return res.status(400).json({ 
+        error: 'Valid price is required and must be greater than 0' 
+      });
     }
 
-    // Check if Stripe key is set
+    // Check if Stripe secret key is configured
     if (!process.env.STRIPE_SECRET_KEY) {
-      console.error('Stripe secret key is not set');
-      return res.status(500).json({ error: 'Server configuration error' });
+      console.error('STRIPE_SECRET_KEY is not configured');
+      return res.status(500).json({ 
+        error: 'Server configuration error' 
+      });
     }
 
     // Create Stripe checkout session
@@ -42,8 +42,8 @@ module.exports = async (req, res) => {
           price_data: {
             currency: 'usd',
             product_data: {
-              name: productName || 'Business Consultation',
-              description: 'Professional business consultation service',
+              name: productName || 'Business Process Consultation',
+              description: 'Expert business consultation with dynamic pricing'
             },
             unit_amount: Math.round(price * 100), // Convert to cents
           },
@@ -51,30 +51,34 @@ module.exports = async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: `${req.headers.origin}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.headers.origin}/cancel.html`,
+      success_url: successUrl || `${getBaseUrl(req)}/success.html`,
+      cancel_url: cancelUrl || `${getBaseUrl(req)}/cancel.html`,
+      metadata: {
+        product_name: productName || 'Business Consultation',
+        customer_price: price.toString()
+      }
     });
 
-    console.log('Session created successfully:', session.id);
+    console.log('Checkout session created successfully:', session.id);
     
-    // Return the session ID
-    res.json({ 
-      success: true,
-      sessionId: session.id
+    return res.status(200).json({ 
+      sessionId: session.id,
+      message: 'Checkout session created successfully'
     });
 
   } catch (error) {
-    console.error('Stripe error:', error);
+    console.error('Stripe API error:', error);
     
-    // Return specific error messages
-    let errorMessage = error.message;
-    if (error.type === 'StripeInvalidRequestError') {
-      errorMessage = 'Invalid Stripe request. Check your API keys.';
-    }
-    
-    res.status(500).json({ 
-      success: false,
-      error: errorMessage
+    return res.status(500).json({ 
+      error: error.message || 'Failed to create checkout session',
+      code: error.type || 'unknown_error'
     });
   }
 };
+
+// Helper function to get base URL
+function getBaseUrl(req) {
+  const host = req.headers['x-forwarded-host'] || req.headers['host'];
+  const protocol = req.headers['x-forwarded-proto'] || 'https';
+  return `${protocol}://${host}`;
+}
