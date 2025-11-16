@@ -1160,13 +1160,13 @@
         
         <div class="price-display">
             <div class="price-label">Your Investment</div>
-            <div class="price-amount">$<span id="stickyPriceDisplay"></span></div>
+            <div class="price-amount">$<span id="stickyPriceDisplay">25</span></div>
         </div>
         
         <div class="price-input-container">
             <div class="price-input-wrapper">
                 <span class="currency-symbol">$</span>
-                <input type="number" id="stickyPriceInput" class="price-input" min="1" step="1">
+                <input type="number" id="stickyPriceInput" class="price-input" min="1" step="1" value="25">
             </div>
         </div>
         
@@ -1361,8 +1361,8 @@
         // Initialize GSAP animations
         gsap.registerPlugin(ScrollTrigger);
         
-        // Initialize Stripe
-        const stripe = Stripe('pk_test_51ST4UF40HwZJ2DP8NQG4YVplJ1IFLaGljQeT2XbxO8WPJJXQSact4mjkXHM7sIOLAPACTK9kZ1jEI1Vhk64ugGSO00hLojOIcU'); // Replace with your actual Stripe publishable key
+        // Initialize Stripe with your publishable key
+        const stripe = Stripe('pk_test_51ST4UF40HwZJ2DP8NQG4YVplJ1IFLaGljQeT2XbxO8WPJJXQSact4mjkXHM7sIOLAPACTK9kZ1jEI1Vhk64ugGSO00hLojOIcU');
         
         document.addEventListener('DOMContentLoaded', function() {
             // Header scroll effect
@@ -1485,6 +1485,9 @@
             const modalClose = document.getElementById('modalClose');
             const modalAgree = document.getElementById('modalAgree');
             
+            // Initialize price display
+            stickyPriceDisplay.textContent = stickyPriceInput.value;
+            
             // Show sticky buy now after scrolling past hero
             ScrollTrigger.create({
                 trigger: ".consultation-section",
@@ -1587,24 +1590,18 @@
                 loadingOverlay.style.display = 'flex';
                 
                 try {
-                    // In a real implementation, you would call your backend to create a Checkout Session
-                    // For demo purposes, we'll simulate this with a timeout
+                    // Call your backend to create a Checkout Session
+                    const sessionId = await createCheckoutSession(price);
                     
-                    // Simulate API call to create Checkout Session
-                    setTimeout(async () => {
-                        // This would be the response from your backend
-                        const sessionId = await createCheckoutSession(price);
-                        
-                        // Redirect to Stripe Checkout
-                        const result = await stripe.redirectToCheckout({
-                            sessionId: sessionId
-                        });
-                        
-                        if (result.error) {
-                            showNotification('Error redirecting to payment: ' + result.error.message, 'error');
-                            loadingOverlay.style.display = 'none';
-                        }
-                    }, 1500);
+                    // Redirect to Stripe Checkout
+                    const result = await stripe.redirectToCheckout({
+                        sessionId: sessionId
+                    });
+                    
+                    if (result.error) {
+                        showNotification('Error redirecting to payment: ' + result.error.message, 'error');
+                        loadingOverlay.style.display = 'none';
+                    }
                     
                 } catch (error) {
                     console.error('Error:', error);
@@ -1613,37 +1610,31 @@
                 }
             }
             
-            // This function would call your backend to create a Checkout Session
+            // This function calls your backend to create a Checkout Session
             async function createCheckoutSession(price) {
-                // In a real implementation, you would make a fetch request to your backend
-                // For demo purposes, we'll return a mock session ID
-                
-                // Example of what your backend would do:
-                /*
-                const response = await fetch('/create-checkout-session', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        price: price,
-                        productName: 'Business Process Consultation',
-                        successUrl: `${window.location.origin}/success.html`,
-                        cancelUrl: `${window.location.origin}/cancel.html`,
-                    }),
-                });
-                
-                const { sessionId } = await response.json();
-                return sessionId;
-                */
-                
-                // For demo, we'll simulate a successful response with a timeout
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-                        // This would be a real session ID from Stripe in production
-                        resolve('cs_test_1234567890abcdefghijklmnopqrstuvwxyz');
-                    }, 1000);
-                });
+                try {
+                    const response = await fetch('/create-checkout-session', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            price: price,
+                            productName: 'Business Process Consultation',
+                        }),
+                    });
+                    
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error || 'Failed to create checkout session');
+                    }
+                    
+                    const data = await response.json();
+                    return data.id;
+                } catch (error) {
+                    console.error('Error creating checkout session:', error);
+                    throw error;
+                }
             }
             
             function showNotification(message, type) {
