@@ -319,18 +319,18 @@
             margin-right: 1rem;
         }
         
-        /* Sticky Buy Now Section */
+        /* Sticky Buy Now Section - ENHANCED */
         .sticky-buy-now {
             position: fixed;
             bottom: 2rem;
-            left: 2rem;
-            width: 350px;
-            background: rgba(30, 41, 59, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            right: 2rem;
+            width: 380px;
+            background: rgba(30, 41, 59, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(37, 99, 235, 0.3);
             z-index: 900;
             transition: all 0.4s ease;
             transform: translateY(0);
@@ -342,32 +342,88 @@
             opacity: 0;
         }
         
+        .sticky-buy-now.pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(37, 99, 235, 0.7);
+            }
+            70% {
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(37, 99, 235, 0);
+            }
+            100% {
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(37, 99, 235, 0);
+            }
+        }
+        
         .sticky-header {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .sticky-title-container {
+            display: flex;
+            align-items: center;
             gap: 0.8rem;
-            margin-bottom: 1rem;
         }
         
         .sticky-icon {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .sticky-title {
-            font-size: 1.3rem;
-            font-weight: 600;
+            font-size: 1.4rem;
+            font-weight: 700;
         }
         
-        .price-input-container {
-            margin-bottom: 1rem;
+        .sticky-close {
+            background: none;
+            border: none;
+            color: var(--gray-dark);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .sticky-close:hover {
+            color: var(--light);
+        }
+        
+        .price-display {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding: 0.8rem;
+            background: rgba(15, 23, 42, 0.7);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .price-label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--light);
             font-size: 0.9rem;
+            color: var(--gray-dark);
+            margin-bottom: 0.3rem;
+        }
+        
+        .price-amount {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .price-input-container {
+            margin-bottom: 1.5rem;
         }
         
         .price-input-wrapper {
@@ -376,49 +432,57 @@
         
         .price-input {
             width: 100%;
-            padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+            padding: 1rem 1rem 1rem 3rem;
             background: rgba(15, 23, 42, 0.7);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            font-size: 1.1rem;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            font-size: 1.2rem;
             color: var(--light);
             transition: all 0.3s;
+            font-weight: 600;
         }
         
         .price-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
         }
         
         .currency-symbol {
             position: absolute;
-            left: 1rem;
+            left: 1.2rem;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--gray-dark);
-            font-weight: 600;
+            color: var(--primary-light);
+            font-weight: 700;
+            font-size: 1.2rem;
         }
         
         .terms-checkbox {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 0.8rem;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 8px;
         }
         
         .terms-checkbox input {
             margin-right: 10px;
             margin-top: 3px;
+            accent-color: var(--primary);
         }
         
         .terms-text {
             font-size: 0.85rem;
             color: var(--gray-dark);
+            line-height: 1.4;
         }
         
         .terms-text a {
             color: var(--primary-light);
             text-decoration: none;
+            font-weight: 500;
         }
         
         .terms-text a:hover {
@@ -429,23 +493,28 @@
             background: var(--gradient);
             color: white;
             border: none;
-            padding: 0.9rem 1.5rem;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 0.5rem;
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+            gap: 0.7rem;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+            letter-spacing: 0.5px;
         }
         
         .buy-now-btn:hover:not(:disabled) {
             transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.5);
+        }
+        
+        .buy-now-btn:active {
+            transform: translateY(-1px);
         }
         
         .buy-now-btn:disabled {
@@ -453,6 +522,17 @@
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
+        }
+        
+        .secure-notice {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--gray-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
         
         /* Process Section */
@@ -693,6 +773,181 @@
             to { transform: rotate(360deg); }
         }
         
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Modal Content */
+        .modal {
+            background: var(--dark);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(30px) scale(0.95);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        
+        .modal-overlay.active .modal {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+        
+        .modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.7);
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--gray-dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            color: var(--light);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .modal-body {
+            padding: 2rem;
+            max-height: calc(80vh - 120px);
+            overflow-y: auto;
+        }
+        
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+        
+        .modal-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .modal-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+        
+        .modal-section p {
+            color: var(--gray-dark);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-section ul {
+            color: var(--gray-dark);
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+        
+        .modal-footer {
+            padding: 1.5rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: flex-end;
+            background: rgba(15, 23, 42, 0.5);
+        }
+        
+        .modal-agree-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .modal-agree-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+        }
+        
+        .terms-highlight {
+            background: rgba(37, 99, 235, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            margin: 1.5rem 0;
+        }
+        
+        .terms-highlight p {
+            color: var(--light);
+            font-weight: 500;
+            margin: 0;
+        }
+        
+        /* Scrollbar styling for modal */
+        .modal-body::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .modal-body::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+        
+        .modal-body::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 3px;
+        }
+        
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-light);
+        }
+        
         /* Animations */
         @keyframes float {
             0% { transform: translateY(0px); }
@@ -716,6 +971,7 @@
             
             .sticky-buy-now {
                 left: 50%;
+                right: auto;
                 transform: translateX(-50%);
                 width: 90%;
                 max-width: 400px;
@@ -741,6 +997,21 @@
             
             .consultation-info {
                 padding: 2rem;
+            }
+            
+            .sticky-buy-now {
+                padding: 1.5rem;
+            }
+            
+            .modal {
+                width: 95%;
+                max-height: 90vh;
+            }
+            
+            .modal-header,
+            .modal-body,
+            .modal-footer {
+                padding: 1.2rem;
             }
         }
     </style>
@@ -877,25 +1148,32 @@
         </div>
     </section>
 
-    <!-- Sticky Buy Now Section -->
+    <!-- Enhanced Sticky Buy Now Section -->
     <div class="sticky-buy-now hidden" id="stickyBuyNow">
         <div class="sticky-header">
-            <div class="sticky-icon">💰</div>
-            <div class="sticky-title">Dynamic Pricing</div>
+            <div class="sticky-title-container">
+                <div class="sticky-icon">💰</div>
+                <div class="sticky-title">Dynamic Pricing</div>
+            </div>
+            <button class="sticky-close" id="stickyClose">✕</button>
+        </div>
+        
+        <div class="price-display">
+            <div class="price-label">Your Investment</div>
+            <div class="price-amount">$<span id="stickyPriceDisplay"></span></div>
         </div>
         
         <div class="price-input-container">
-            <label for="stickyPriceInput" class="price-label">Enter Your Investment</label>
             <div class="price-input-wrapper">
                 <span class="currency-symbol">$</span>
-                <input type="number" id="stickyPriceInput" class="price-input" min="1" placeholder="500.00">
+                <input type="number" id="stickyPriceInput" class="price-input" min="1" step="1">
             </div>
         </div>
         
         <div class="terms-checkbox">
             <input type="checkbox" id="stickyTermsCheckbox">
             <label for="stickyTermsCheckbox" class="terms-text">
-                I agree to the <a href="#" target="_blank">Terms and Conditions</a>
+                I agree to the <a href="#" id="termsLink">Terms and Conditions</a>
             </label>
         </div>
         
@@ -903,6 +1181,70 @@
             <span>Buy Now</span>
             <span>🚀</span>
         </button>
+        
+        <div class="secure-notice">
+            <span>🔒</span>
+            <span>Secure payment powered by Stripe</span>
+        </div>
+    </div>
+
+    <!-- Terms & Conditions Modal -->
+    <div class="modal-overlay" id="termsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Terms & Conditions</h2>
+                <button class="modal-close" id="modalClose">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>Payment Terms</h3>
+                    <div class="terms-highlight">
+                        <p>By proceeding with this payment, you explicitly agree to pay the entered amount and acknowledge that this is a non-refundable payment for consultation services.</p>
+                    </div>
+                    <p>Please read these terms carefully before proceeding with your payment. By completing the transaction, you accept and agree to be bound by these terms.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Service Agreement</h3>
+                    <p>CoreTech BPO agrees to provide business consultation services as described in the service description. The scope and deliverables will be based on the consultation package selected.</p>
+                    <ul>
+                        <li>Consultation sessions will be scheduled within 5 business days of payment confirmation</li>
+                        <li>All sessions are conducted remotely via video conference</li>
+                        <li>Session recordings and materials will be provided within 48 hours after each session</li>
+                        <li>Follow-up support is available for 30 days following the consultation</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Payment Authorization</h3>
+                    <p>By completing this transaction, you authorize CoreTech BPO to charge the specified amount to your selected payment method. You confirm that:</p>
+                    <ul>
+                        <li>You are authorized to use the payment method provided</li>
+                        <li>The payment amount is correct and reflects the value you assign to the consultation services</li>
+                        <li>You understand this is a non-refundable transaction</li>
+                        <li>You have read and agree to these terms voluntarily</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Refund Policy</h3>
+                    <p>All payments for consultation services are final and non-refundable. Due to the nature of digital services and immediate allocation of resources, we do not offer refunds or cancellations once payment is processed.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Intellectual Property</h3>
+                    <p>All materials, documentation, and recommendations provided during the consultation remain the intellectual property of CoreTech BPO. You are granted a limited license to use these materials for your internal business purposes.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Confidentiality</h3>
+                    <p>Both parties agree to maintain the confidentiality of proprietary information shared during the consultation. CoreTech BPO will not disclose your business information to third parties without your consent.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-agree-btn" id="modalAgree">I Understand and Agree</button>
+            </div>
+        </div>
     </div>
 
     <section class="process" id="process">
@@ -1020,7 +1362,7 @@
         gsap.registerPlugin(ScrollTrigger);
         
         // Initialize Stripe
-        const stripe = Stripe('pk_test_51JABC1234567890'); // Replace with your actual Stripe publishable key
+        const stripe = Stripe('pk_test_51ST4UF40HwZJ2DP8NQG4YVplJ1IFLaGljQeT2XbxO8WPJJXQSact4mjkXHM7sIOLAPACTK9kZ1jEI1Vhk64ugGSO00hLojOIcU'); // Replace with your actual Stripe publishable key
         
         document.addEventListener('DOMContentLoaded', function() {
             // Header scroll effect
@@ -1127,29 +1469,98 @@
                 });
             });
             
-            // Show sticky buy now after scrolling past hero
-            ScrollTrigger.create({
-                trigger: ".consultation-section",
-                start: "top 80%",
-                onEnter: () => {
-                    document.getElementById('stickyBuyNow').classList.remove('hidden');
-                },
-                onLeaveBack: () => {
-                    document.getElementById('stickyBuyNow').classList.add('hidden');
-                }
-            });
-            
-            // Purchase functionality
+            // Enhanced sticky buy now functionality
+            const stickyBuyNow = document.getElementById('stickyBuyNow');
+            const stickyClose = document.getElementById('stickyClose');
             const stickyPriceInput = document.getElementById('stickyPriceInput');
+            const stickyPriceDisplay = document.getElementById('stickyPriceDisplay');
             const stickyTermsCheckbox = document.getElementById('stickyTermsCheckbox');
             const stickyBuyNowBtn = document.getElementById('stickyBuyNowBtn');
             const loadingOverlay = document.getElementById('loadingOverlay');
             const notification = document.getElementById('notification');
             
+            // Modal Elements
+            const termsModal = document.getElementById('termsModal');
+            const termsLink = document.getElementById('termsLink');
+            const modalClose = document.getElementById('modalClose');
+            const modalAgree = document.getElementById('modalAgree');
+            
+            // Show sticky buy now after scrolling past hero
+            ScrollTrigger.create({
+                trigger: ".consultation-section",
+                start: "top 80%",
+                onEnter: () => {
+                    stickyBuyNow.classList.remove('hidden');
+                    // Add pulse animation for attention
+                    stickyBuyNow.classList.add('pulse');
+                    setTimeout(() => {
+                        stickyBuyNow.classList.remove('pulse');
+                    }, 6000);
+                },
+                onLeaveBack: () => {
+                    stickyBuyNow.classList.add('hidden');
+                }
+            });
+            
+            // Close sticky buy now
+            stickyClose.addEventListener('click', function() {
+                stickyBuyNow.classList.add('hidden');
+            });
+            
+            // Update price display when input changes
+            stickyPriceInput.addEventListener('input', function() {
+                const price = this.value;
+                stickyPriceDisplay.textContent = price;
+                toggleBuyNowButton();
+            });
+            
             // Event Listeners
-            stickyPriceInput.addEventListener('input', toggleBuyNowButton);
             stickyTermsCheckbox.addEventListener('change', toggleBuyNowButton);
             stickyBuyNowBtn.addEventListener('click', initiateStripeCheckout);
+            
+            // Modal functionality
+            // Open modal when Terms link is clicked
+            termsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                termsModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            });
+            
+            // Close modal when close button is clicked
+            modalClose.addEventListener('click', function() {
+                termsModal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+            
+            // Close modal when overlay is clicked
+            termsModal.addEventListener('click', function(e) {
+                if (e.target === termsModal) {
+                    termsModal.classList.remove('active');
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+            });
+            
+            // Agree button functionality
+            modalAgree.addEventListener('click', function() {
+                // Check the terms checkbox
+                stickyTermsCheckbox.checked = true;
+                toggleBuyNowButton();
+                
+                // Close the modal
+                termsModal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+                
+                // Show confirmation
+                showNotification('Terms and conditions accepted', 'success');
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && termsModal.classList.contains('active')) {
+                    termsModal.classList.remove('active');
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+            });
             
             // Functions
             function toggleBuyNowButton() {
@@ -1249,3 +1660,104 @@
     </script>
 </body>
 </html>
+
+This is script.js
+// server.js
+const express = require('express');
+const stripe = require('stripe')('sk_test_51ST4UF40HwZJ2DP83rA9XygygOdiVWx4MLzYvI7EElhrBzKX3sNh5CTc6iX6fBJuaSTE4VfVvVxOUOgoTq8L3uiI005sdONyGr');
+const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+const app = express();
+app.use(bodyParser.json());
+app.use(cors());
+
+// Email configuration
+const transporter = nodemailer.createTransport({
+  service: 'gmail', // or your email service
+  auth: {
+    user: 'abdullahadress9@gmail.com',
+    pass: 'Ab8411@@1122'
+  }
+});
+
+// Create Stripe checkout session
+app.post('/create-checkout-session', async (req, res) => {
+  const { items, customerEmail } = req.body;
+  
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: items.map(item => ({
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: item.name,
+          },
+          unit_amount: Math.round(item.price * 100), // Convert to cents
+        },
+        quantity: 1,
+      })),
+      mode: 'payment',
+      success_url: `${process.env.CLIENT_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.CLIENT_URL}/cancel`,
+      customer_email: customerEmail,
+    });
+
+    res.json({ id: session.id });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Stripe webhook for completed payments
+app.post('/webhook', express.raw({type: 'application/json'}), (req, res) => {
+  const sig = req.headers['stripe-signature'];
+  let event;
+
+  try {
+    event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+  } catch (err) {
+    return res.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
+  // Handle the checkout.session.completed event
+  if (event.type === 'checkout.session.completed') {
+    const session = event.data.object;
+    
+    // Send email notification
+    sendOrderEmail(session);
+  }
+
+  res.json({received: true});
+});
+
+// Function to send order email
+function sendOrderEmail(session) {
+  const mailOptions = {
+    from: 'your_email@gmail.com',
+    to: session.customer_email,
+    subject: 'Order Confirmation',
+    html: `
+      <h2>Thank you for your order!</h2>
+      <p>Your order has been confirmed and will be processed shortly.</p>
+      <p><strong>Order ID:</strong> ${session.id}</p>
+      <p><strong>Amount Paid:</strong> $${(session.amount_total / 100).toFixed(2)}</p>
+      <br>
+      <p>We'll notify you when your item ships.</p>
+    `
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log('Error sending email:', error);
+    } else {
+      console.log('Email sent:', info.response);
+    }
+  });
+}
+
+app.listen(3000, () => {
+  console.log('Server running on port 3000');
+});
