@@ -1614,6 +1614,8 @@
             // Replace the createCheckoutSession function in your HTML with this:
 async function createCheckoutSession(price) {
   try {
+    console.log('Creating checkout session with price:', price);
+    
     const response = await fetch('/api/create-checkout-session', {
       method: 'POST',
       headers: {
@@ -1624,16 +1626,32 @@ async function createCheckoutSession(price) {
         productName: 'Business Process Consultation',
       }),
     });
+
+    console.log('Response status:', response.status);
     
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || 'Failed to create checkout session');
+    const responseText = await response.text();
+    console.log('Response text:', responseText);
+    
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch (e) {
+      throw new Error('Invalid JSON response from server');
     }
     
-    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.error || data.details || 'Failed to create checkout session');
+    }
+    
+    if (!data.id) {
+      throw new Error('No session ID received from server');
+    }
+    
+    console.log('Session created successfully:', data.id);
     return data.id;
+    
   } catch (error) {
-    console.error('Error creating checkout session:', error);
+    console.error('Error in createCheckoutSession:', error);
     throw error;
   }
 }
