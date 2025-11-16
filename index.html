@@ -1574,41 +1574,42 @@
             }
             
             async function initiateStripeCheckout() {
-                const price = parseFloat(stickyPriceInput.value);
-                
-                if (isNaN(price) || price <= 0) {
-                    showNotification('Please enter a valid investment amount', 'error');
-                    return;
-                }
-                
-                if (!stickyTermsCheckbox.checked) {
-                    showNotification('Please agree to the Terms and Conditions', 'error');
-                    return;
-                }
-                
-                // Show loading
-                loadingOverlay.style.display = 'flex';
-                
-                try {
-                    // Call your backend to create a Checkout Session
-                    const sessionId = await createCheckoutSession(price);
-                    
-                    // Redirect to Stripe Checkout
-                    const result = await stripe.redirectToCheckout({
-                        sessionId: sessionId
-                    });
-                    
-                    if (result.error) {
-                        showNotification('Error redirecting to payment: ' + result.error.message, 'error');
-                        loadingOverlay.style.display = 'none';
-                    }
-                    
-                } catch (error) {
-                    console.error('Error:', error);
-                    showNotification('An error occurred while processing your request', 'error');
-                    loadingOverlay.style.display = 'none';
-                }
-            }
+  const price = parseFloat(stickyPriceInput.value);
+  
+  if (isNaN(price) || price <= 0) {
+    showNotification('Please enter a valid investment amount', 'error');
+    return;
+  }
+  
+  if (!stickyTermsCheckbox.checked) {
+    showNotification('Please agree to the Terms and Conditions', 'error');
+    return;
+  }
+  
+  // Show loading
+  loadingOverlay.style.display = 'flex';
+  
+  try {
+    const sessionId = await createCheckoutSession(price);
+    
+    console.log('Redirecting to checkout with session:', sessionId);
+    
+    // Redirect to Stripe Checkout
+    const result = await stripe.redirectToCheckout({
+      sessionId: sessionId
+    });
+    
+    if (result.error) {
+      console.error('Stripe redirect error:', result.error);
+      throw new Error(result.error.message);
+    }
+    
+  } catch (error) {
+    console.error('Checkout initiation error:', error);
+    showNotification('Payment Error: ' + error.message, 'error');
+    loadingOverlay.style.display = 'none';
+  }
+}
             
             // This function calls your backend to create a Checkout Session
             // Replace the createCheckoutSession function in your HTML with this:
