@@ -1611,31 +1611,32 @@
             }
             
             // This function calls your backend to create a Checkout Session
-            async function createCheckoutSession(price) {
-                try {
-                    const response = await fetch('/create-checkout-session', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            price: price,
-                            productName: 'Business Process Consultation',
-                        }),
-                    });
-                    
-                    if (!response.ok) {
-                        const errorData = await response.json();
-                        throw new Error(errorData.error || 'Failed to create checkout session');
-                    }
-                    
-                    const data = await response.json();
-                    return data.id;
-                } catch (error) {
-                    console.error('Error creating checkout session:', error);
-                    throw error;
-                }
-            }
+            // Replace the createCheckoutSession function in your HTML with this:
+async function createCheckoutSession(price) {
+  try {
+    const response = await fetch('/api/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        price: price,
+        productName: 'Business Process Consultation',
+      }),
+    });
+    
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to create checkout session');
+    }
+    
+    const data = await response.json();
+    return data.id;
+  } catch (error) {
+    console.error('Error creating checkout session:', error);
+    throw error;
+  }
+}
             
             function showNotification(message, type) {
                 notification.textContent = message;
