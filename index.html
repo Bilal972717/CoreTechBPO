@@ -319,18 +319,18 @@
             margin-right: 1rem;
         }
         
-        /* Sticky Buy Now Section - ENHANCED */
+        /* Sticky Buy Now Section */
         .sticky-buy-now {
             position: fixed;
             bottom: 2rem;
-            right: 2rem;
-            width: 380px;
-            background: rgba(30, 41, 59, 0.98);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(37, 99, 235, 0.3);
+            left: 2rem;
+            width: 350px;
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 900;
             transition: all 0.4s ease;
             transform: translateY(0);
@@ -342,88 +342,32 @@
             opacity: 0;
         }
         
-        .sticky-buy-now.pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(37, 99, 235, 0.7);
-            }
-            70% {
-                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(37, 99, 235, 0);
-            }
-            100% {
-                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(37, 99, 235, 0);
-            }
-        }
-        
         .sticky-header {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .sticky-title-container {
-            display: flex;
-            align-items: center;
             gap: 0.8rem;
+            margin-bottom: 1rem;
         }
         
         .sticky-icon {
-            font-size: 1.8rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 1.5rem;
         }
         
         .sticky-title {
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            font-weight: 600;
         }
         
-        .sticky-close {
-            background: none;
-            border: none;
-            color: var(--gray-dark);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        
-        .sticky-close:hover {
-            color: var(--light);
-        }
-        
-        .price-display {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            padding: 0.8rem;
-            background: rgba(15, 23, 42, 0.7);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .price-input-container {
+            margin-bottom: 1rem;
         }
         
         .price-label {
             display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--light);
             font-size: 0.9rem;
-            color: var(--gray-dark);
-            margin-bottom: 0.3rem;
-        }
-        
-        .price-amount {
-            font-size: 2.2rem;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .price-input-container {
-            margin-bottom: 1.5rem;
         }
         
         .price-input-wrapper {
@@ -432,57 +376,49 @@
         
         .price-input {
             width: 100%;
-            padding: 1rem 1rem 1rem 3rem;
+            padding: 0.8rem 0.8rem 0.8rem 2.5rem;
             background: rgba(15, 23, 42, 0.7);
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
-            font-size: 1.2rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            font-size: 1.1rem;
             color: var(--light);
             transition: all 0.3s;
-            font-weight: 600;
         }
         
         .price-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
         }
         
         .currency-symbol {
             position: absolute;
-            left: 1.2rem;
+            left: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--primary-light);
-            font-weight: 700;
-            font-size: 1.2rem;
+            color: var(--gray-dark);
+            font-weight: 600;
         }
         
         .terms-checkbox {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 1.5rem;
-            padding: 0.8rem;
-            background: rgba(15, 23, 42, 0.5);
-            border-radius: 8px;
+            margin-bottom: 1rem;
         }
         
         .terms-checkbox input {
             margin-right: 10px;
             margin-top: 3px;
-            accent-color: var(--primary);
         }
         
         .terms-text {
             font-size: 0.85rem;
             color: var(--gray-dark);
-            line-height: 1.4;
         }
         
         .terms-text a {
             color: var(--primary-light);
             text-decoration: none;
-            font-weight: 500;
         }
         
         .terms-text a:hover {
@@ -493,28 +429,23 @@
             background: var(--gradient);
             color: white;
             border: none;
-            padding: 1.2rem 1.5rem;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 700;
+            padding: 0.9rem 1.5rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 0.7rem;
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
-            letter-spacing: 0.5px;
+            gap: 0.5rem;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
         }
         
         .buy-now-btn:hover:not(:disabled) {
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.5);
-        }
-        
-        .buy-now-btn:active {
-            transform: translateY(-1px);
+            box-shadow: 0 12px 25px rgba(37, 99, 235, 0.4);
         }
         
         .buy-now-btn:disabled {
@@ -522,17 +453,6 @@
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
-        }
-        
-        .secure-notice {
-            text-align: center;
-            margin-top: 1rem;
-            font-size: 0.8rem;
-            color: var(--gray-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
         }
         
         /* Process Section */
@@ -773,181 +693,6 @@
             to { transform: rotate(360deg); }
         }
         
-        /* Modal Overlay */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 3000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-        
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* Modal Content */
-        .modal {
-            background: var(--dark);
-            border-radius: 20px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transform: translateY(30px) scale(0.95);
-            opacity: 0;
-            transition: all 0.4s ease;
-        }
-        
-        .modal-overlay.active .modal {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-        }
-        
-        .modal-header {
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(15, 23, 42, 0.7);
-        }
-        
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .modal-close {
-            background: none;
-            border: none;
-            color: var(--gray-dark);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-close:hover {
-            color: var(--light);
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .modal-body {
-            padding: 2rem;
-            max-height: calc(80vh - 120px);
-            overflow-y: auto;
-        }
-        
-        .modal-section {
-            margin-bottom: 2rem;
-        }
-        
-        .modal-section:last-child {
-            margin-bottom: 0;
-        }
-        
-        .modal-section h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: var(--primary-light);
-            font-weight: 600;
-        }
-        
-        .modal-section p {
-            color: var(--gray-dark);
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-        
-        .modal-section ul {
-            color: var(--gray-dark);
-            padding-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .modal-section li {
-            margin-bottom: 0.5rem;
-            line-height: 1.5;
-        }
-        
-        .modal-footer {
-            padding: 1.5rem 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: flex-end;
-            background: rgba(15, 23, 42, 0.5);
-        }
-        
-        .modal-agree-btn {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .modal-agree-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
-        }
-        
-        .terms-highlight {
-            background: rgba(37, 99, 235, 0.1);
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary);
-            margin: 1.5rem 0;
-        }
-        
-        .terms-highlight p {
-            color: var(--light);
-            font-weight: 500;
-            margin: 0;
-        }
-        
-        /* Scrollbar styling for modal */
-        .modal-body::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        .modal-body::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 3px;
-        }
-        
-        .modal-body::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 3px;
-        }
-        
-        .modal-body::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-light);
-        }
-        
         /* Animations */
         @keyframes float {
             0% { transform: translateY(0px); }
@@ -971,7 +716,6 @@
             
             .sticky-buy-now {
                 left: 50%;
-                right: auto;
                 transform: translateX(-50%);
                 width: 90%;
                 max-width: 400px;
@@ -997,21 +741,6 @@
             
             .consultation-info {
                 padding: 2rem;
-            }
-            
-            .sticky-buy-now {
-                padding: 1.5rem;
-            }
-            
-            .modal {
-                width: 95%;
-                max-height: 90vh;
-            }
-            
-            .modal-header,
-            .modal-body,
-            .modal-footer {
-                padding: 1.2rem;
             }
         }
     </style>
@@ -1148,32 +877,25 @@
         </div>
     </section>
 
-    <!-- Enhanced Sticky Buy Now Section -->
+    <!-- Sticky Buy Now Section -->
     <div class="sticky-buy-now hidden" id="stickyBuyNow">
         <div class="sticky-header">
-            <div class="sticky-title-container">
-                <div class="sticky-icon">💰</div>
-                <div class="sticky-title">Dynamic Pricing</div>
-            </div>
-            <button class="sticky-close" id="stickyClose">✕</button>
-        </div>
-        
-        <div class="price-display">
-            <div class="price-label">Your Investment</div>
-            <div class="price-amount">$<span id="stickyPriceDisplay"></span></div>
+            <div class="sticky-icon">💰</div>
+            <div class="sticky-title">Dynamic Pricing</div>
         </div>
         
         <div class="price-input-container">
+            <label for="stickyPriceInput" class="price-label">Enter Your Investment</label>
             <div class="price-input-wrapper">
                 <span class="currency-symbol">$</span>
-                <input type="number" id="stickyPriceInput" class="price-input" min="1" step="1">
+                <input type="number" id="stickyPriceInput" class="price-input" min="1" placeholder="500.00">
             </div>
         </div>
         
         <div class="terms-checkbox">
             <input type="checkbox" id="stickyTermsCheckbox">
             <label for="stickyTermsCheckbox" class="terms-text">
-                I agree to the <a href="#" id="termsLink">Terms and Conditions</a>
+                I agree to the <a href="#" target="_blank">Terms and Conditions</a>
             </label>
         </div>
         
@@ -1181,70 +903,6 @@
             <span>Buy Now</span>
             <span>🚀</span>
         </button>
-        
-        <div class="secure-notice">
-            <span>🔒</span>
-            <span>Secure payment powered by Stripe</span>
-        </div>
-    </div>
-
-    <!-- Terms & Conditions Modal -->
-    <div class="modal-overlay" id="termsModal">
-        <div class="modal">
-            <div class="modal-header">
-                <h2 class="modal-title">Terms & Conditions</h2>
-                <button class="modal-close" id="modalClose">✕</button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-section">
-                    <h3>Payment Terms</h3>
-                    <div class="terms-highlight">
-                        <p>By proceeding with this payment, you explicitly agree to pay the entered amount and acknowledge that this is a non-refundable payment for consultation services.</p>
-                    </div>
-                    <p>Please read these terms carefully before proceeding with your payment. By completing the transaction, you accept and agree to be bound by these terms.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Service Agreement</h3>
-                    <p>CoreTech BPO agrees to provide business consultation services as described in the service description. The scope and deliverables will be based on the consultation package selected.</p>
-                    <ul>
-                        <li>Consultation sessions will be scheduled within 5 business days of payment confirmation</li>
-                        <li>All sessions are conducted remotely via video conference</li>
-                        <li>Session recordings and materials will be provided within 48 hours after each session</li>
-                        <li>Follow-up support is available for 30 days following the consultation</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Payment Authorization</h3>
-                    <p>By completing this transaction, you authorize CoreTech BPO to charge the specified amount to your selected payment method. You confirm that:</p>
-                    <ul>
-                        <li>You are authorized to use the payment method provided</li>
-                        <li>The payment amount is correct and reflects the value you assign to the consultation services</li>
-                        <li>You understand this is a non-refundable transaction</li>
-                        <li>You have read and agree to these terms voluntarily</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Refund Policy</h3>
-                    <p>All payments for consultation services are final and non-refundable. Due to the nature of digital services and immediate allocation of resources, we do not offer refunds or cancellations once payment is processed.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Intellectual Property</h3>
-                    <p>All materials, documentation, and recommendations provided during the consultation remain the intellectual property of CoreTech BPO. You are granted a limited license to use these materials for your internal business purposes.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Confidentiality</h3>
-                    <p>Both parties agree to maintain the confidentiality of proprietary information shared during the consultation. CoreTech BPO will not disclose your business information to third parties without your consent.</p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="modal-agree-btn" id="modalAgree">I Understand and Agree</button>
-            </div>
-        </div>
     </div>
 
     <section class="process" id="process">
@@ -1356,268 +1014,238 @@
 
     <!-- Notification -->
     <div class="notification" id="notification"></div>
-<script>
-    // Initialize Stripe with your publishable key
-    const stripe = Stripe('pk_test_51ST4UF40HwZJ2DP8NQG4YVplJ1IFLaGljQeT2XbxO8WPJJXQSact4mjkXHM7sIOLAPACTK9kZ1jEI1Vhk64ugGSO00hLojOIcU');
-    
-    // Global variables
-    let loadingOverlay, notification;
 
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize elements
-        loadingOverlay = document.getElementById('loadingOverlay');
-        notification = document.getElementById('notification');
-        
-        // Initialize animations (your existing GSAP code)
+    <script>
+        // Initialize GSAP animations
         gsap.registerPlugin(ScrollTrigger);
         
-        // Header scroll effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+        // Initialize Stripe
+        const stripe = Stripe('pk_test_51JABC1234567890'); // Replace with your actual Stripe publishable key
         
-        // Your existing GSAP animations here...
-        gsap.to('.hero h1', {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            delay: 0.3
-        });
-        
-        // ... include all your other GSAP animations
-
-        // Enhanced sticky buy now functionality
-        const stickyBuyNow = document.getElementById('stickyBuyNow');
-        const stickyClose = document.getElementById('stickyClose');
-        const stickyPriceInput = document.getElementById('stickyPriceInput');
-        const stickyPriceDisplay = document.getElementById('stickyPriceDisplay');
-        const stickyTermsCheckbox = document.getElementById('stickyTermsCheckbox');
-        const stickyBuyNowBtn = document.getElementById('stickyBuyNowBtn');
-        
-        // Modal Elements
-        const termsModal = document.getElementById('termsModal');
-        const termsLink = document.getElementById('termsLink');
-        const modalClose = document.getElementById('modalClose');
-        const modalAgree = document.getElementById('modalAgree');
-        
-        // Initialize price display
-        stickyPriceInput.value = '99';
-        stickyPriceDisplay.textContent = '99';
-        
-        // Show sticky buy now after scrolling
-        ScrollTrigger.create({
-            trigger: ".consultation-section",
-            start: "top 80%",
-            onEnter: () => {
-                stickyBuyNow.classList.remove('hidden');
-                stickyBuyNow.classList.add('pulse');
-                setTimeout(() => {
-                    stickyBuyNow.classList.remove('pulse');
-                }, 6000);
-            },
-            onLeaveBack: () => {
-                stickyBuyNow.classList.add('hidden');
-            }
-        });
-        
-        // Close sticky buy now
-        stickyClose.addEventListener('click', function() {
-            stickyBuyNow.classList.add('hidden');
-        });
-        
-        // Update price display when input changes
-        stickyPriceInput.addEventListener('input', function() {
-            const price = this.value;
-            stickyPriceDisplay.textContent = price;
-            toggleBuyNowButton();
-        });
-        
-        // Event Listeners
-        stickyTermsCheckbox.addEventListener('change', toggleBuyNowButton);
-        stickyBuyNowBtn.addEventListener('click', initiateStripeCheckout);
-        
-        // Modal functionality
-        termsLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            termsModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-        
-        modalClose.addEventListener('click', function() {
-            termsModal.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-        
-        termsModal.addEventListener('click', function(e) {
-            if (e.target === termsModal) {
-                termsModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-        
-        modalAgree.addEventListener('click', function() {
-            stickyTermsCheckbox.checked = true;
-            toggleBuyNowButton();
-            termsModal.classList.remove('active');
-            document.body.style.overflow = '';
-            showNotification('Terms and conditions accepted', 'success');
-        });
-        
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && termsModal.classList.contains('active')) {
-                termsModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-        
-        // Functions
-        function toggleBuyNowButton() {
-            const price = parseFloat(stickyPriceInput.value);
-            const termsAgreed = stickyTermsCheckbox.checked;
-            stickyBuyNowBtn.disabled = isNaN(price) || price <= 0 || !termsAgreed;
-        }
-        
-        async function initiateStripeCheckout() {
-            const price = parseFloat(stickyPriceInput.value);
+        document.addEventListener('DOMContentLoaded', function() {
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
             
-            console.log('🔄 Buy Now clicked with price:', price);
+            // Hero animations
+            gsap.to('.hero h1', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                delay: 0.3
+            });
             
-            if (isNaN(price) || price <= 0) {
-                showNotification('Please enter a valid investment amount', 'error');
-                return;
-            }
+            gsap.to('.hero p', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                delay: 0.5
+            });
             
-            if (!stickyTermsCheckbox.checked) {
-                showNotification('Please agree to the Terms and Conditions', 'error');
-                return;
-            }
+            gsap.to('.cta-button', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                delay: 0.7
+            });
             
-            try {
-                // Show loading
-                loadingOverlay.style.display = 'flex';
-                console.log('⏳ Creating checkout session...');
-                
-                // Create checkout session
-                const sessionId = await createCheckoutSession(price);
-                console.log('✅ Session created:', sessionId);
-                
-                // Redirect to Stripe Checkout
-                console.log('🔄 Redirecting to Stripe...');
-                const result = await stripe.redirectToCheckout({
-                    sessionId: sessionId
+            // Section animations
+            gsap.utils.toArray('.section-title, .section-subtitle').forEach(el => {
+                gsap.fromTo(el, {
+                    opacity: 0,
+                    y: 30
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    }
                 });
+            });
+            
+            // Consultation info animation
+            gsap.fromTo('.consultation-info', {
+                opacity: 0,
+                y: 30
+            }, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: '.consultation-info',
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+            
+            // Process steps animation
+            gsap.utils.toArray('.process-step').forEach((step, i) => {
+                gsap.fromTo(step, {
+                    opacity: 0,
+                    y: 30
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: i * 0.2,
+                    scrollTrigger: {
+                        trigger: step,
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            });
+            
+            // Testimonial cards animation
+            gsap.utils.toArray('.testimonial-card').forEach((card, i) => {
+                gsap.fromTo(card, {
+                    opacity: 0,
+                    y: 30
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: i * 0.3,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            });
+            
+            // Show sticky buy now after scrolling past hero
+            ScrollTrigger.create({
+                trigger: ".consultation-section",
+                start: "top 80%",
+                onEnter: () => {
+                    document.getElementById('stickyBuyNow').classList.remove('hidden');
+                },
+                onLeaveBack: () => {
+                    document.getElementById('stickyBuyNow').classList.add('hidden');
+                }
+            });
+            
+            // Purchase functionality
+            const stickyPriceInput = document.getElementById('stickyPriceInput');
+            const stickyTermsCheckbox = document.getElementById('stickyTermsCheckbox');
+            const stickyBuyNowBtn = document.getElementById('stickyBuyNowBtn');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const notification = document.getElementById('notification');
+            
+            // Event Listeners
+            stickyPriceInput.addEventListener('input', toggleBuyNowButton);
+            stickyTermsCheckbox.addEventListener('change', toggleBuyNowButton);
+            stickyBuyNowBtn.addEventListener('click', initiateStripeCheckout);
+            
+            // Functions
+            function toggleBuyNowButton() {
+                const price = parseFloat(stickyPriceInput.value);
+                const termsAgreed = stickyTermsCheckbox.checked;
                 
-                if (result.error) {
-                    throw new Error(result.error.message);
+                stickyBuyNowBtn.disabled = isNaN(price) || price <= 0 || !termsAgreed;
+            }
+            
+            async function initiateStripeCheckout() {
+                const price = parseFloat(stickyPriceInput.value);
+                
+                if (isNaN(price) || price <= 0) {
+                    showNotification('Please enter a valid investment amount', 'error');
+                    return;
                 }
                 
-            } catch (error) {
-                console.error('❌ Checkout error:', error);
-                showNotification('Error: ' + error.message, 'error');
-                loadingOverlay.style.display = 'none';
+                if (!stickyTermsCheckbox.checked) {
+                    showNotification('Please agree to the Terms and Conditions', 'error');
+                    return;
+                }
+                
+                // Show loading
+                loadingOverlay.style.display = 'flex';
+                
+                try {
+                    // In a real implementation, you would call your backend to create a Checkout Session
+                    // For demo purposes, we'll simulate this with a timeout
+                    
+                    // Simulate API call to create Checkout Session
+                    setTimeout(async () => {
+                        // This would be the response from your backend
+                        const sessionId = await createCheckoutSession(price);
+                        
+                        // Redirect to Stripe Checkout
+                        const result = await stripe.redirectToCheckout({
+                            sessionId: sessionId
+                        });
+                        
+                        if (result.error) {
+                            showNotification('Error redirecting to payment: ' + result.error.message, 'error');
+                            loadingOverlay.style.display = 'none';
+                        }
+                    }, 1500);
+                    
+                } catch (error) {
+                    console.error('Error:', error);
+                    showNotification('An error occurred while processing your request', 'error');
+                    loadingOverlay.style.display = 'none';
+                }
             }
-        }
-        
-        // This function calls your backend to create a Checkout Session
-async function createCheckoutSession(price) {
-    try {
-        // Get the base URL
-        const baseUrl = window.location.origin;
-        
-        const response = await fetch(`${baseUrl}/api/create-checkout-session`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                price: price,
-                productName: 'Business Process Consultation',
-                successUrl: `${baseUrl}/success.html`,
-                cancelUrl: `${baseUrl}/cancel.html`,
-            }),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || 'Failed to create checkout session');
-        }
-
-        const { sessionId } = await response.json();
-        return sessionId;
-        
-    } catch (error) {
-        console.error('Error creating checkout session:', error);
-        throw error;
-    }
-}
-        
-        function showNotification(message, type) {
-            notification.textContent = message;
-            notification.className = `notification ${type}`;
-            notification.classList.add('show');
             
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 5000);
-        }
-    });
-</script>
-   <!-- Add this button anywhere in your HTML -->
-<button onclick="testCheckout()" style="position: fixed; top: 10px; left: 10px; z-index: 10000; padding: 10px; background: #2563EB; color: white; border: none; border-radius: 5px; cursor: pointer;">
-    🧪 Test Checkout
-</button>
-
-<script>
-async function testCheckout() {
-    console.log('=== STARTING CHECKOUT TEST ===');
-    
-    // Test 1: Check if Stripe is loaded
-    if (typeof stripe === 'undefined') {
-        console.error('❌ Stripe is not loaded');
-        alert('Stripe not loaded. Check your Stripe key.');
-        return;
-    }
-    console.log('✅ Stripe is loaded');
-    
-    // Test 2: Test backend connection
-    try {
-        const healthResponse = await fetch('/health');
-        const healthData = await healthResponse.json();
-        console.log('✅ Backend health:', healthData);
-    } catch (error) {
-        console.error('❌ Backend health check failed:', error);
-        alert('Backend connection failed: ' + error.message);
-        return;
-    }
-    
-    // Test 3: Test checkout session creation
-    try {
-        console.log('Testing checkout session creation...');
-        const response = await fetch('/create-checkout-session', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ price: 25, productName: 'Test' })
+            // This function would call your backend to create a Checkout Session
+            async function createCheckoutSession(price) {
+                // In a real implementation, you would make a fetch request to your backend
+                // For demo purposes, we'll return a mock session ID
+                
+                // Example of what your backend would do:
+                /*
+                const response = await fetch('/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        price: price,
+                        productName: 'Business Process Consultation',
+                        successUrl: `${window.location.origin}/success.html`,
+                        cancelUrl: `${window.location.origin}/cancel.html`,
+                    }),
+                });
+                
+                const { sessionId } = await response.json();
+                return sessionId;
+                */
+                
+                // For demo, we'll simulate a successful response with a timeout
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        // This would be a real session ID from Stripe in production
+                        resolve('cs_test_1234567890abcdefghijklmnopqrstuvwxyz');
+                    }, 1000);
+                });
+            }
+            
+            function showNotification(message, type) {
+                notification.textContent = message;
+                notification.className = `notification ${type}`;
+                notification.classList.add('show');
+                
+                // Remove after 3 seconds
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
         });
-        
-        const data = await response.json();
-        console.log('✅ Checkout session response:', data);
-        
-        if (data.sessionId) {
-            console.log('✅ Session created successfully');
-            alert('✅ All tests passed! Session ID: ' + data.sessionId);
-        } else {
-            console.error('❌ No session ID in response:', data);
-            alert('❌ Failed to create session: ' + (data.error || 'Unknown error'));
-        }
-    } catch (error) {
-        console.error('❌ Checkout test failed:', error);
-        alert('Checkout test failed: ' + error.message);
-    }
-}
-</script>
+    </script>
+</body>
+</html>
