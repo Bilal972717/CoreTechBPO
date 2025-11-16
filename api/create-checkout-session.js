@@ -1,33 +1,36 @@
 const stripe = require('stripe')('sk_test_51ST4UF40HwZJ2DP83rA9XygygOdiVw4MLzYvI7EElhrBzKX3sNh5CTc6iX6fBJuaSTE4VfVvVxOUOgoTq8L3uiI005sdONyGr');
 
-module.exports = async (req, res) => {
-  // Set CORS headers
+export default async function handler(req, res) {
+  // Enable CORS
+  res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
   // Handle preflight request
   if (req.method === 'OPTIONS') {
-    return res.status(200).end();
+    res.status(200).end();
+    return;
   }
 
+  // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
     const { price, productName } = req.body;
-    
-    console.log('Received request with price:', price);
-    
-    // Validate input
-    if (!price || price <= 0) {
+
+    console.log('Creating checkout session for price:', price);
+
+    // Validate price
+    if (!price || price < 1) {
       return res.status(400).json({ 
-        error: 'Invalid price',
-        details: 'Price must be greater than 0'
+        error: 'Invalid price. Must be at least $1.00' 
       });
     }
 
+    // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
@@ -49,18 +52,19 @@ module.exports = async (req, res) => {
     });
 
     console.log('Checkout session created:', session.id);
-    
-    res.status(200).json({ 
+
+    return res.status(200).json({ 
       id: session.id,
       url: session.url 
     });
-    
+
   } catch (error) {
     console.error('Stripe API error:', error);
-    res.status(500).json({ 
+    
+    return res.status(500).json({ 
       error: 'Failed to create checkout session',
-      details: error.message,
+      message: error.message,
       type: error.type
     });
   }
-};
+}
