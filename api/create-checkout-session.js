@@ -1,32 +1,27 @@
+// api/create-checkout-session.js
 const stripe = require('stripe')('sk_test_51ST4UF40HwZJ2DP83rA9XygygOdiVw4MLzYvI7EElhrBzKX3sNh5CTc6iX6fBJuaSTE4VfVvVxOUOgoTq8L3uiI005sdONyGr');
 
-export default async function handler(req, res) {
-  // Enable CORS
-  res.setHeader('Access-Control-Allow-Credentials', true);
+module.exports = async (req, res) => {
+  // Handle CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
-
-  // Handle preflight request
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  
   if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
+    return res.status(200).end();
   }
 
-  // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
     const { price, productName } = req.body;
-
-    console.log('Creating checkout session for price:', price);
-
-    // Validate price
-    if (!price || price < 1) {
+    
+    // Validate input
+    if (!price || isNaN(price) || price < 1) {
       return res.status(400).json({ 
-        error: 'Invalid price. Must be at least $1.00' 
+        error: 'Invalid price. Price must be at least $1.00' 
       });
     }
 
@@ -39,9 +34,8 @@ export default async function handler(req, res) {
             currency: 'usd',
             product_data: {
               name: productName || 'Business Process Consultation',
-              description: 'Professional business consultation service',
             },
-            unit_amount: Math.round(price * 100), // Convert to cents
+            unit_amount: Math.round(parseFloat(price) * 100), // Ensure it's a number
           },
           quantity: 1,
         },
@@ -51,20 +45,19 @@ export default async function handler(req, res) {
       cancel_url: `${req.headers.origin || 'https://your-domain.vercel.app'}/cancel.html`,
     });
 
-    console.log('Checkout session created:', session.id);
-
     return res.status(200).json({ 
       id: session.id,
       url: session.url 
     });
 
   } catch (error) {
-    console.error('Stripe API error:', error);
+    console.error('Stripe API Error:', error);
     
     return res.status(500).json({ 
       error: 'Failed to create checkout session',
       message: error.message,
-      type: error.type
+      type: error.type,
+      code: error.code
     });
   }
-}
+};
